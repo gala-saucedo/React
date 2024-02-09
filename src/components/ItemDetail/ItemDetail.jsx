@@ -1,6 +1,25 @@
+import { useContext, useState } from "react"
 import ItemCount from "../ItemCount/ItemCount"
+import {Link} from "react-router-dom"
+import { CartContext } from "../../context/CartContext"
+import { useNotification } from "../Notification/Notification"
 
 const ItemDetail = ({ id, name, img, category, description, price, stock}) => {
+    const [ quantity, setQuantity ] = useState(0)
+
+    const { addItem } = useContext(CartContext)
+
+    const { showNotification } = useNotification()
+
+    const handleOnAdd = (quantity) => {
+        const objProductToAdd ={
+            id, name, price, quantity
+        }
+        addItem(objProductToAdd)
+        showNotification("success", `Se agregaron correctamente ${quantity} ${name}`)
+        setQuantity(quantity)
+    }
+
     return (
         <article className="CardItem">
             <header className="Header">
@@ -23,7 +42,10 @@ const ItemDetail = ({ id, name, img, category, description, price, stock}) => {
                 </p>
             </section>
             <footer className="ItemFooter">
-                <ItemCount initial = {1} stock={stock} onAdd={(quantity) => console.log(`cantidad agregada: ${quantity}` ) } />
+        
+                <Link to= "/cart" className="Option" >Terminar compra</Link>
+                <ItemCount initial={1} stock={stock} onAdd={handleOnAdd} />
+                
             </footer>
         </article>
     )

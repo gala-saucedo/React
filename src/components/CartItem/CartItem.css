@@ -1,0 +1,30 @@
+.cart-item {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.cart-item h2 {
+    margin: 0;
+}
+
+.cart-item h3 {
+    margin: 5px 0;
+}
+
+.remove-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-total {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
